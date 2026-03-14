@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDebounce } from "../hook/useDebounce";
 import { apiFetch } from "../service/api";
+import { Input } from "./input";
 
 interface User {
   id: number;
@@ -26,14 +27,11 @@ export const SearchList = () => {
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="flex bg-white p-2 items-center rounded-2xl w-60 h-10 px-4">
-        <input
-          onChange={(e) => setSearch(e.target.value)}
-          value={search}
-          className="outline-none border-none text-black"
-          placeholder="Search"
-        />
-      </div>
+      <Input
+        value={search}
+        handleChange={(e) => setSearch(e.target.value)}
+        placeholder="Search..."
+      />
 
       <ul className="bg-white w-60 mt-2 text-black">
         {results.map((result) => (
