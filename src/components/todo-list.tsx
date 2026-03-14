@@ -24,7 +24,7 @@ export const TodoList = () => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 w-[400px] mx-auto">
+    <div className="flex flex-col items-center gap-4 w-100 mx-auto">
       <h1>Todo List</h1>
       <div className="flex gap-2 w-full justify-between">
         <Input
