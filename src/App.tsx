@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { SearchList } from "./components/search-list";
 import { TodoList } from "./components/todo-list";
+import { InfinityScroll } from "./components/infinity-scroll";
 
 const renderComponent = {
   "search-list": <SearchList />,
   "todo-list": <TodoList />,
+  "infinity-scroll": <InfinityScroll />,
 };
 function App() {
   const [component, setComponent] =
