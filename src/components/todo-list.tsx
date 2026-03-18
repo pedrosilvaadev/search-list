@@ -1,33 +1,9 @@
-import { useState } from "react";
 import { Input } from "./input";
+import { useTodoList } from "../hook/useTodoList";
 
-
-interface TodoListProps {
-  id: string;
-  todo: string;
-  completed: boolean;
-}
 export const TodoList = () => {
-  const [todos, setTodos] = useState<TodoListProps[]>([]);
-  const [newTodo, setNewTodo] = useState<string>("");
-
-  const addTodo = () => {
-    if (newTodo.trim() !== "") {
-      setTodos([...todos, { id: Date.now().toString(), todo: newTodo, completed: false }]);
-      setNewTodo("");
-    }
-  };
-
-  const removeTodo = (id: string) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
-
-  const toggleTodo = (id: string) => {
-    const updatedTodos = todos.map((todo) =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    );
-    setTodos(updatedTodos);
-  };
+  const { todos, newTodo, setNewTodo, addTodo, removeTodo, toggleTodo } =
+    useTodoList();
 
   return (
     <div className="flex flex-col items-center gap-4 w-100 mx-auto">
