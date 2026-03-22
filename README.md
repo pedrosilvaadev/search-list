@@ -1,73 +1,91 @@
-# React + TypeScript + Vite
+# Search List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicacao React com TypeScript que reune 3 mini componentes para estudo de hooks, consumo de API e renderizacao dinamica:
 
-Currently, two official plugins are available:
+- busca com debounce
+- lista de tarefas
+- infinite scroll
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Objetivo
 
-## React Compiler
+Este projeto foi criado para praticar conceitos comuns de front-end moderno em uma interface simples, trocando entre componentes no mesmo layout.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Funcionalidades
 
-## Expanding the ESLint configuration
+1. Search List
+- Campo de busca com debounce (`useDebounce`)
+- Consulta de usuarios na API `jsonplaceholder`
+- Renderizacao da lista de resultados em tempo real
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+2. Todo List
+- Criacao de tarefas
+- Marcacao de tarefa como concluida
+- Remocao de tarefa
+- Persistencia no `localStorage` ao adicionar/remover/atualizar
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+3. Infinity Scroll
+- Listagem de criptomoedas via API da CoinGecko
+- Carregamento paginado
+- Scroll infinito com `react-intersection-observer`
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Tecnologias
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS 4
+- ESLint
+
+## Estrutura do projeto
+
+```txt
+src/
+  components/
+    infinity-scroll.tsx
+    input.tsx
+    search-list.tsx
+    todo-list.tsx
+  hook/
+    useDebounce.ts
+    useTodoList.ts
+  service/
+    api.ts
+  App.tsx
+  main.tsx
+  index.css
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Como executar localmente
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Instale as dependencias:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+2. Rode o servidor de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+3. Abra no navegador a URL exibida no terminal (normalmente `http://localhost:5173`).
+
+## Scripts disponiveis
+
+- `npm run dev`: inicia o ambiente de desenvolvimento
+- `npm run build`: gera o build de producao
+- `npm run preview`: visualiza o build localmente
+- `npm run lint`: executa o lint do projeto
+
+## APIs utilizadas
+
+- Usuarios: `https://jsonplaceholder.typicode.com/users`
+- Criptomoedas: `https://api.coingecko.com/api/v3/coins/markets`
+
+## Possiveis melhorias
+
+- Carregar tarefas salvas no `localStorage` ao iniciar a aplicacao
+- Exibir estados de erro/empty state para as listas
+- Adicionar testes de componentes e hooks
+- Melhorar responsividade do layout principal
